@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YelpCamp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/"><span></span>YelpCamp</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+              <li class="nav-item <%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>">
+                <a href="/campgrounds" class="nav-link"><span><i class="fas fa-home"></i></span> Home</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                       <% if(!currentUser) {%>
+                            <li class="nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
+                                <a class="nav-link" href="/login"><span><i class="fas fa-sign-in-alt"></i></span> Login</a>
+                            </li>
+                            <li class="nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
+                                <a class="nav-link" href="/register"><span><i class="fas fa-user"></i></span> Sign Up</a>
+                                </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span><i class="fas fa-user-tie"></i></span> Signed In As <%= currentUser.username%></a>
+                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
+                            </li>
+                        <% } %>
+                    </ul>
+      </div>
+</nav>
+    <div class="container">
+        <% if (error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if (success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>      
+        <% } %>
+    </div>
+ <div class="container">
